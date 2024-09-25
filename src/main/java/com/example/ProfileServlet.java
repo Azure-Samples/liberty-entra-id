@@ -35,6 +35,7 @@ public class ProfileServlet extends HttpServlet {
 
         String username = request.getUserPrincipal().getName();
         request.setAttribute("name", username);
+        request.setAttribute("roles", roles);
 
         request
                 .getRequestDispatcher("/profile.jsp")
