@@ -12,7 +12,7 @@ import java.io.IOException;
 import com.ibm.websphere.security.social.UserProfileManager;
 import java.util.List;
 
-@WebServlet(name = "ProfileServlet", urlPatterns = "/profile")
+@WebServlet(name = "ProfileServlet", urlPatterns = {"/profile/user","/profile/admin"})
 @ServletSecurity(value = @HttpConstraint(rolesAllowed = {"users"},
         transportGuarantee = ServletSecurity.TransportGuarantee.CONFIDENTIAL))
 public class ProfileServlet extends HttpServlet {
@@ -37,7 +37,7 @@ public class ProfileServlet extends HttpServlet {
         request.setAttribute("name", username);
 
         request
-                .getRequestDispatcher("profile.jsp")
+                .getRequestDispatcher("/profile.jsp")
                 .forward(request, response);
     }
 }

@@ -5,9 +5,9 @@
     <title>Profile</title>
 </head>
 <body>
-<h1>Hello, {name}</h1>
-<form method="post" action="logout">
-    <button type="submit">Log out</button>
-</form>
+<h1>Hello, ${name}</h1>
+<h1>
+    <b><a href="/logout">Sign out</a></b>
+</h1>
 </body>
 </html>
