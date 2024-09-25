@@ -22,16 +22,15 @@ public class ProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        
-        @SuppressWarnings("unchecked")
-        List<String> groups = UserProfileManager.getUserProfile().getIdToken().getClaims().getClaim("groups",
-                List.class);
-        System.out.println(groups);
 
-        @SuppressWarnings("unchecked")
-        List<String> roles = UserProfileManager.getUserProfile().getIdToken().getClaims().getClaim("roles",
+        List<?> roles = UserProfileManager.getUserProfile().getIdToken().getClaims().getClaim("roles",
                 List.class);
-        System.out.println(roles);
+
+        String path = request.getServletPath();
+        if (path.equals("/profile/admin") && (null == roles || !roles.contains("admin"))) {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+            return;
+        }
 
         String username = request.getUserPrincipal().getName();
         request.setAttribute("name", username);
