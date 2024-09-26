@@ -28,7 +28,7 @@ public class ProfileServlet extends HttpServlet {
 
         String path = request.getServletPath();
         if (path.equals("/profile/admin") && (null == roles || !roles.contains("admin"))) {
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+            response.sendError(HttpServletResponse.SC_FORBIDDEN);
             return;
         }
 
